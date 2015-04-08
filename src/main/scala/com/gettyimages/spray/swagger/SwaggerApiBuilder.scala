@@ -19,8 +19,9 @@ package com.gettyimages.spray.swagger
 import com.wordnik.swagger.config._
 import com.wordnik.swagger.reader._
 import com.wordnik.swagger.core.util.ReaderUtil
-import com.typesafe.scalalogging.LazyLogging
+
 import com.wordnik.swagger.model._
+import org.slf4j.LoggerFactory
 import scala.reflect.runtime.universe._
 import com.wordnik.swagger.converter.ModelConverters
 import com.wordnik.swagger.core.SwaggerContext
@@ -29,7 +30,9 @@ class SwaggerApiBuilder(
   config: SwaggerConfig,
   apiTypes: Seq[Type]
 ) extends ReaderUtil
-    with LazyLogging {
+    {
+
+  val logger = LoggerFactory.getLogger(getClass.getSimpleName)
 
   val scanner = new SprayApiScanner(apiTypes)
   val reader = new SprayApiReader()

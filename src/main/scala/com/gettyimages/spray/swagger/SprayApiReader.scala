@@ -18,10 +18,12 @@ package com.gettyimages.spray.swagger
 import java.lang.annotation.Annotation
 import java.lang.reflect.Method
 import javax.ws.rs._
+import org.slf4j.LoggerFactory
+
 import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe.Type
 
-import com.typesafe.scalalogging.LazyLogging
+
 import com.wordnik.swagger.annotations._
 import com.wordnik.swagger.config._
 import com.wordnik.swagger.core._
@@ -32,8 +34,9 @@ import com.wordnik.swagger.reader._
 
 class SprayApiReader
     extends ClassReader
-    with ClassReaderUtils
-    with LazyLogging {
+    with ClassReaderUtils {
+
+  val logger = LoggerFactory.getLogger(getClass.getSimpleName)
 
   def readRecursive(
     docRoot: String,
@@ -174,7 +177,7 @@ class SprayApiReader
     val apiOperation = method.getAnnotation(classOf[ApiOperation])
 
     if (method.getAnnotation(classOf[ApiOperation]) != null) {
-      logger.debug("annotation: ApiOperation: %s,".format(apiOperation.toString))
+//      logger.debug("annotation: ApiOperation: %s,".format(apiOperation.toString))
 
       val produces = apiOperation.produces match {
         case e: String if e.trim != "" ⇒ e.split(",").map(_.trim).toList

@@ -15,16 +15,22 @@
  */
 package com.gettyimages.spray.swagger
 
+import org.slf4j.LoggerFactory
+
 import scala.reflect.runtime.universe._
 import com.wordnik.swagger.annotations.Api
 import com.wordnik.swagger.core.SwaggerContext
 import com.wordnik.swagger.config._
-import com.typesafe.scalalogging.LazyLogging
+
 import spray.routing.HttpService
 
 class SprayApiScanner(apiTypes: Seq[Type])
-    extends Scanner
-    with LazyLogging {
+    extends Scanner {
+
+  val logger = LoggerFactory.getLogger(getClass.getSimpleName)
+
+
+
   def classes(): List[Class[_]] = {
 
     apiTypes.map(apiType => if (!(apiType <:< typeOf[HttpService])) logger.warn(s"ApiType $apiType does not implement HttpService"))

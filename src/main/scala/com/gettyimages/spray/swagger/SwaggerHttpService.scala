@@ -16,12 +16,14 @@
 
 package com.gettyimages.spray.swagger
 
+import org.slf4j.LoggerFactory
+
 import scala.reflect.runtime.universe.Type
 
 import org.json4s.DefaultFormats
 import org.json4s.Formats
 
-import com.typesafe.scalalogging.LazyLogging
+
 
 import spray.routing.{ PathMatcher, HttpService, Route }
 import com.wordnik.swagger.model._
@@ -33,7 +35,10 @@ import spray.http.StatusCodes.NotFound
 
 trait SwaggerHttpService
     extends HttpService
-    with LazyLogging {
+    {
+
+  val logger = LoggerFactory.getLogger(getClass.getSimpleName)
+
 
   def apiTypes: Seq[Type]
 

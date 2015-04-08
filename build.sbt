@@ -4,19 +4,19 @@ organization := "com.gettyimages"
 
 name := "spray-swagger"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "io.spray" %% "spray-routing" % "1.3.3",
-  "io.spray" %% "spray-testkit" % "1.3.3" % "test",
+  "io.spray" %% "spray-routing" % "1.3.1",
+  "io.spray" %% "spray-testkit" % "1.3.1" % "test",
   "org.scalatest" %% "scalatest" % "2.2.4" % "test" ,
   "com.wordnik" %% "swagger-core" % "1.3.12" excludeAll( ExclusionRule(organization = "org.json4s"),  ExclusionRule(organization="org.fasterxml*") ),
-  "com.typesafe.akka" %% "akka-actor" % "2.3.9",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.2",
   "org.json4s" %% "json4s-jackson" % "3.2.11",
   "org.json4s" %% "json4s-native" % "3.2.11",
   "joda-time" % "joda-time" % "2.7",
   "org.joda" % "joda-convert" % "1.7",
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0",
+  "com.typesafe.scala-logging" %% "scala-logging-slf4j" % "2.1.2",
   "javax.ws.rs" % "jsr311-api" % "1.1.1"
 )
 
